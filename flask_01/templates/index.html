@@ -7,16 +7,11 @@
 </head>
 <body>
     <h1>Witaj na stronie!</h1>
-    <form name="example" action="/example" method="POST">
-        <label>Wpisz liczbę a: <input name="a" type="number"></label><br><hr>
-        <label>Wpisz liczbę a: <input name="b" type="number"></label><br><hr>
-        <label>Co chcesz zrobić? <select name="sign">
-            <option value="+">dodawanie</option>
-            <option value="-">odejmowanie</option>
-            <option value="*">mnożenie</option>
-            <option value="/">dzielenie</option>
-        </select></label>
-        <input type="submit" value="SEND">
+    <form name="login" method="POST" action="/login">
+        <label>Login: <input name = "login" placeholder='login' type="text" value="{{login}}" required></label>
+        <label>Hasło: <input name = "password" placeholder="Password..." type="password" required></label>
+        <input type="submit">
     </form>
+    <h2>{{error}}</h2>
 </body>
 </html>
