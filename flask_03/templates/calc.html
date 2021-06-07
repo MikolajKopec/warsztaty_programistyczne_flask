@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="example" action="/calc" method="POST">
+        <label>Wpisz liczbę a: <input name="a" type="number"></label><br><hr>
+        <label>Wpisz liczbę b: <input name="b" type="number"></label><br><hr>
+        <label>Co chcesz zrobić? <select name="sign">
+            <option value="dodawanie">dodawanie</option>
+            <option value="odejmowanie">odejmowanie</option>
+            <option value="mnozenie">mnożenie</option>
+            <option value="dzielenie">dzielenie</option>
+        </select></label>
+        <input type="submit" value="SEND">
+    </form>
+    <h2>{{wynik}}</h2>
+</body>
+</html>

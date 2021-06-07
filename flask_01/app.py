@@ -1,17 +1,19 @@
 from flask import Flask, render_template,request,redirect
 app = Flask(__name__)
-
+@app.route('/')
+def index():
+    return render_template('index.html')
 @app.route('/login', methods=('GET','POST'))
 def login():
     if request.method =='GET':
-        return render_template('index.html')
+        return render_template('login.html')
     elif request.method =='POST':
         log = request.form['login']
         passw = request.form['password']
         success="Zostałeś zalogowany!"
         error = "Błędne hasło!"
         if passw!="jeleń":
-            return render_template('index.html',error = error,login = log)
+            return render_template('login.html',error = error,login = log)
         elif passw=="jeleń":
             return redirect('calc')
 @app.route('/calc', methods = ('GET','POST',))
