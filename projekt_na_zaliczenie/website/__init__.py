@@ -2,7 +2,6 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
-from werkzeug.utils import secure_filename   
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
@@ -12,9 +11,7 @@ def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY']='metin'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
-    app.config['UPLOAD_FOLDER'] = '/website/auction_images'
     app.config['MAX_CONTENT_PATH'] = 100000
-    app.config['ALLOWED_EXTENSIONS'] = {'jpeg','png','webp','jpg','gif'}
     db.init_app(app)
 
     login_manager = LoginManager()

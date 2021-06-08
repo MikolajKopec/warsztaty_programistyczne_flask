@@ -123,4 +123,8 @@ form label input {
 .info.success {
   background-color: #32c259;
 }
+
+textarea {
+  resize: none;
+}
 /*# sourceMappingURL=base.css.map */

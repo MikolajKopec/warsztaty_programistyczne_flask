@@ -1,0 +1,33 @@
+@import "variables.scss";
+img{
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+.auction-container{
+    width: 70%;
+    @include center;
+    flex-direction: row;
+    padding: $basic-section-padding;
+    margin: $basic-section-padding;
+    .auction-img{
+        width: 40%;
+        padding:0 10px;
+    }
+    .auction-describe{
+        width: 60%;
+        @include center;
+        text-align: center;
+        .auction-price{
+            .buy-now{
+                color: $third-color;
+            }
+        }
+        .auction-action{
+            @include center;
+        }
+    }
+    border: solid black 1px;
+    border-radius: 4%;
+}

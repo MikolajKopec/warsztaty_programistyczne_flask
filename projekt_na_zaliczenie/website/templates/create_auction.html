@@ -5,8 +5,10 @@
 <form method="POST" enctype="multipart/form-data">
     <h1>Create auction</h1>
     <label>Image: <input type="file" name="img"></label>
-    <label>Item name: <input name="login" type="text" placeholder="Zatruty miecz+9"></label>
-    <label>Price - in won: <input name="price" type="number" placeholder="20"></label>
+    <label>Item name: <input name="item" type="text" placeholder="Zatruty miecz+9"></label>
+    <label>Starting price: <input name="cw" type="number" placeholder="1"></label>
+    <label>Instant buy price: <input name="kt" type="number" placeholder="50"></label>
+    <label>More informations(other types of payments etc.): <textarea rows="6" cols="60" name="more" placeholder="Instead of won i can accept sbk or high level items."></textarea></label>
     <button type="submit">Post item</button>
 </form>
 

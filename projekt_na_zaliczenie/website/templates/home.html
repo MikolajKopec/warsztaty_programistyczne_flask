@@ -1,3 +1,45 @@
 {% extends "base.html" %}
 {%block title%} Metin2 trade {%endblock%}
-{%block content%} Welcome on the page! {%endblock%}
+{%block style%}<link rel="stylesheet" href="{{url_for('static',filename='css/home.css')}}"> {%endblock%}
+{%block content%} 
+<h1>Newest auctions:</h1>
+{%if auction%}
+{%for each in auction%}
+<div class="auction-container">
+    <div class="auction-img">
+        <img src="{{url_for('static', filename='auction_images/')}}{{each.img}}" alt="">
+    </div>
+    <div class="auction-describe">
+        <div class="auction-describe-header">
+            <h2>{{each.item_name}}</h2>
+            <p>{{each.informations}}</p>
+        </div>
+        <div class="auction-price">
+            {%if user.is_authenticated %}
+            <p>Actual price: {{each.cw}}KK
+                {%if each.winner%}
+                 - by {{each.winner}}
+                {%else%}
+                - be first and bid!
+                {%endif%}
+                </p>
+            <p><a class="buy-now" href="">Buy now: {{each.kt}}KK</a></p>
+            {%else%}
+            <p><a href="/login">Log in to see price</a></p>
+            {%endif%}
+        </div>
+        {%if user.is_authenticated %}
+        <div class="auction-action">
+            <a href="">SEND MESSAGE</a>
+            <form method="POST">
+                <label>Your price: <input name="bid" type="number"></label>
+                <input style="display: none;" type="number" name="auction_id" value='{{each.id}}'>
+                <button type="submit">BID</button>
+            </form>
+        </div>
+        {%endif%}
+    </div>
+</div>
+{%endfor%}
+{%endif%}
+{%endblock%}
