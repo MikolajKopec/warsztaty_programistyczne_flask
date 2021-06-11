@@ -1,13 +1,17 @@
 from flask import Blueprint,render_template,request
+from flask.helpers import flash
 from flask_login import current_user,login_required
+from werkzeug.utils import redirect
 from . import db
-from .models import Auction
+from .models import Auction,Item
 views = Blueprint('views',__name__)
 
 @views.route('/',methods =['GET','POST'])
 def home():
     auction = None
+    item = None
     auction = Auction.query.all()
+    item = Item.query.all()
     if request.method == "GET":
         pass
     else:
@@ -15,7 +19,13 @@ def home():
         id = request.form['auction_id']
         winner = current_user.login
         auction_price = Auction.query.filter_by(id = id).first()
-        auction_price.cw=bid
-        auction_price.winner=winner
-        db.session.commit()
-    return render_template('home.html', user = current_user,auction = auction)
+        if int(auction_price.cw)<int(bid) and int(auction_price.kt)>(int(bid)):
+            auction_price.cw=bid
+            auction_price.winner=winner
+            db.session.commit()
+        elif int(auction_price.kt)<=int(bid):
+            flash('Your bid is too high, use BUY NOW', category='error')
+        else:
+            flash('Input higher value than actual price',category='error')
+        return redirect(f'/#auction_{id}')
+    return render_template('home.html', user = current_user,auction = auction, item = item)

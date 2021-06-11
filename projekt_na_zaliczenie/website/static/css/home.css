@@ -4,7 +4,13 @@ img {
 }
 
 .auction-container {
-  width: 70%;
+  color: white;
+  -webkit-text-stroke: black 0.15px;
+  width: 80%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: black 1px solid;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -19,15 +25,58 @@ img {
       -ms-flex-direction: column;
           flex-direction: column;
   flex-direction: row;
-  padding: 30px 0;
-  margin: 30px 0;
+  padding: 30px 10px;
+  margin: 30px 10px;
   border: solid black 1px;
-  border-radius: 4%;
+}
+
+.auction-container * {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.auction-container img.decorator {
+  width: 10px;
+  position: absolute;
+}
+
+.auction-container .lu, .auction-container .ru {
+  top: 0;
+}
+
+.auction-container .ld, .auction-container .rd {
+  bottom: 0;
+}
+
+.auction-container .lu, .auction-container .ld {
+  left: 0;
+}
+
+.auction-container .rd, .auction-container .ru {
+  right: 0;
+}
+
+.auction-container .ru {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.auction-container .ld {
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+}
+
+.auction-container .rd {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
 }
 
 .auction-container .auction-img {
   width: 40%;
   padding: 0 10px;
+}
+
+.auction-container .auction-description {
+  color: #89b88d;
 }
 
 .auction-container .auction-describe {

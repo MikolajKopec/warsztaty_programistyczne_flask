@@ -1,3 +1,47 @@
+@use "sass:math";
+@-webkit-keyframes slide {
+  0% {
+    -webkit-transform: translateY(-200px);
+            transform: translateY(-200px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+@keyframes slide {
+  0% {
+    -webkit-transform: translateY(-200px);
+            transform: translateY(-200px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.active {
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
+  -webkit-animation: slide 0.5s;
+          animation: slide 0.5s;
+}
+
+:not(.active).slide {
+  z-index: -1;
+  -webkit-transform: translateY(-200px);
+          transform: translateY(-200px);
+  visibility: hidden;
+  -webkit-transition: visibility 1s, -webkit-transform 0.7s;
+  transition: visibility 1s, -webkit-transform 0.7s;
+  transition: transform 0.7s, visibility 1s;
+  transition: transform 0.7s, visibility 1s, -webkit-transform 0.7s;
+}
+
 body {
   font-size: 18px;
   font-family: 'Noto Sans', sans-serif;
@@ -41,7 +85,7 @@ a:hover {
 }
 
 .container {
-  padding: 30px 0;
+  padding: 30px 10px;
   width: 66%;
   margin: 0 auto;
   display: -webkit-box;
@@ -114,6 +158,10 @@ form label input {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: -1;
 }
 
 .info.error {
@@ -122,6 +170,19 @@ form label input {
 
 .info.success {
   background-color: #32c259;
+}
+
+.info .close {
+  position: absolute;
+  right: 100px;
+  top: 0;
+  -webkit-transform: scale(2.5);
+          transform: scale(2.5);
+}
+
+.info .close:hover {
+  color: #EFC69B;
+  cursor: pointer;
 }
 
 textarea {

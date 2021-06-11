@@ -6,7 +6,10 @@ img{
 
 
 .auction-container{
-    width: 70%;
+    color: white;
+    -webkit-text-stroke: black 0.15px;
+    width: 80%;
+    @include metin_desc;
     @include center;
     flex-direction: row;
     padding: $basic-section-padding;
@@ -14,6 +17,9 @@ img{
     .auction-img{
         width: 40%;
         padding:0 10px;
+    }
+    .auction-description{
+        color: $item-desc-color;
     }
     .auction-describe{
         width: 60%;
@@ -29,5 +35,4 @@ img{
         }
     }
     border: solid black 1px;
-    border-radius: 4%;
 }

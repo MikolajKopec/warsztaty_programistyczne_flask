@@ -5,9 +5,27 @@
 <h1>Newest auctions:</h1>
 {%if auction%}
 {%for each in auction%}
-<div class="auction-container">
+<div class="auction-container" id="auction_{{each.id}}">
+    <img class="decorator lu" src="{{url_for('static',filename='/images/corner_border.png')}}">
+    <img class="decorator ru" src="{{url_for('static',filename='/images/corner_border.png')}}">
+    <img class="decorator ld" src="{{url_for('static',filename='/images/corner_border.png')}}">
+    <img class="decorator rd" src="{{url_for('static',filename='/images/corner_border.png')}}">
     <div class="auction-img">
         <img src="{{url_for('static', filename='auction_images/')}}{{each.img}}" alt="">
+        <div class="auction-description">
+            {%for itm in item%}
+            {%if each.auction_type=='item'%}
+            {%if itm.auction_id==each.id%}
+            <p>{{itm.upgrade}}</p>
+            <p>{{itm.element}}</p>
+            {% set list = itm.bonuses.split('/') %}
+            {%for sub in list%}
+                <p class="bonus">{{sub}}</p>
+            {%endfor%}
+            {%endif%}
+            {%endif%}
+            {%endfor%}
+        </div>
     </div>
     <div class="auction-describe">
         <div class="auction-describe-header">
@@ -23,7 +41,7 @@
                 - be first and bid!
                 {%endif%}
                 </p>
-            <p><a class="buy-now" href="">Buy now: {{each.kt}}KK</a></p>
+            <p><a class="buy-now" href="/buy-now/auction_id={{each.id}}">Buy now: {{each.kt}}KK</a></p>
             {%else%}
             <p><a href="/login">Log in to see price</a></p>
             {%endif%}
