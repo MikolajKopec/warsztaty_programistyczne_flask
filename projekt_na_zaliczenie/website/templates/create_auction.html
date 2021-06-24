@@ -5,8 +5,8 @@
 <h1>Create auction</h1>
 <form method="POST" enctype="multipart/form-data" class="item">
     <label>Image: <input type="file" name="img"></label>
-    <label>Starting price: <input name="cw" type="number" placeholder="1"></label>
-    <label>Instant buy price: <input name="kt" type="number" placeholder="50"></label>
+    <label>Starting price(1 = 1kk): <input name="cw" type="number" placeholder="1"></label>
+    <label>Instant buy price( 1  = 1kk): <input name="kt" type="number" placeholder="50"></label>
     <label>Choose category for your auction:
         <select id="category" name="category" onclick="choose_category(this)">
             <option value="item" selected>Item</option>
@@ -15,7 +15,7 @@
     </label>
 
     <section class="item">
-        <label>Item name: <input name="item" type="text" placeholder="Zatruty miecz+9"></label>
+        <label>Item name: <input name="item" type="text" placeholder="Nazwa przedmiotu"></label>
         <label>Upgrade level +: <input name="upgrade" type="number" min="0" max="15"></label>
         <label>Weapon: <input type="checkbox" onclick="weapon(this);"></label>
         <label class="element hide">Element strenght %: <input name="element" type="number" min="0" max="20"></label>
@@ -25,13 +25,13 @@
             <img class="decorator ru" src="{{url_for('static',filename='/images/corner_border.png')}}">
             <img class="decorator ld" src="{{url_for('static',filename='/images/corner_border.png')}}">
             <img class="decorator rd" src="{{url_for('static',filename='/images/corner_border.png')}}">
-            <label class="bonus hide"><input class="bonus_name" name="bonus_name1" type="text" placeholder="Średnie obrażenia: " > <input name="bonus1" type="text" placeholder="20" ></label>
-            <label class="bonus hide"><input class="bonus_name" name="bonus_name2" type="text" placeholder="Silny na nieumarłych: " > <input name="bonus2" type="text" placeholder="40" ></label>
-            <label class="bonus hide"><input class="bonus_name" name="bonus_name3" type="text" placeholder="Siła: " > <input name="bonus3" type="text"placeholder="12" ></label>
-            <label class="bonus hide"><input class="bonus_name" name="bonus_name4" type="text" placeholder="Max pż: " > <input name="bonus4" type="text"placeholder="2000" ></label>
-            <label class="bonus hide"><input class="bonus_name" name="bonus_name5" type="text" placeholder="Silny na zwierzęta: " > <input name="bonus5" type="text" placeholder="20"></label>
-            <label class="bonus hide"><input class="bonus_name" name="bonus_name6" type="text" placeholder="Silny na zwierzęta: " > <input name="bonus6" type="text" placeholder="20"></label>
-            <label class="bonus hide"><input class="bonus_name" name="bonus_name7" type="text" placeholder="Silny na zwierzęta: " > <input name="bonus7" type="text" placeholder="20"></label>
+            <label class="bonus hide"><input class="bonus_name" name="bonus_name1" type="text" placeholder="Nazwa bonusu" > <input name="bonus1" type="text" placeholder="Wartość" ></label>
+            <label class="bonus hide"><input class="bonus_name" name="bonus_name2" type="text" placeholder="Nazwa bonusu" > <input name="bonus2" type="text" placeholder="Wartość" ></label>
+            <label class="bonus hide"><input class="bonus_name" name="bonus_name3" type="text" placeholder="Nazwa bonusu" > <input name="bonus3" type="text" placeholder="Wartość" ></label>
+            <label class="bonus hide"><input class="bonus_name" name="bonus_name4" type="text" placeholder="Nazwa bonusu" > <input name="bonus4" type="text" placeholder="Wartość" ></label>
+            <label class="bonus hide"><input class="bonus_name" name="bonus_name5" type="text" placeholder="Nazwa bonusu" > <input name="bonus5" type="text" placeholder="Wartość"></label>
+            <label class="bonus hide"><input class="bonus_name" name="bonus_name6" type="text" placeholder="Nazwa bonusu" > <input name="bonus6" type="text" placeholder="Wartość"></label>
+            <label class="bonus hide"><input class="bonus_name" name="bonus_name7" type="text" placeholder="Nazwa bonusu" > <input name="bonus7" type="text" placeholder="Wartość"></label>
         </section>
     </section>
 

@@ -2,6 +2,15 @@
 {%block title%} Metin2 trade {%endblock%}
 {%block style%}<link rel="stylesheet" href="{{url_for('static',filename='css/home.css')}}"> {%endblock%}
 {%block content%} 
+<div class="sorter">
+    <h2>Wyszukiwarka:</h2>
+    <form method="get">
+    <label>Wpisz nazwę przedmiotu
+    <input type="text" name="item_name"></label>
+    <button type="submit">Wyślij</button>
+    </form>
+    <h1>{{filter_name}}</h1>
+</div>
 <h1>Newest auctions:</h1>
 {%if auction%}
 {%for each in auction%}
@@ -16,8 +25,8 @@
             {%for itm in item%}
             {%if each.auction_type=='item'%}
             {%if itm.auction_id==each.id%}
-            <p>{{itm.upgrade}}</p>
-            <p>{{itm.element}}</p>
+            <p>Poziom ulepszenia +:{{itm.upgrade}}</p>
+            <p>Siła żywiołu:{{itm.element}}</p>
             {% set list = itm.bonuses.split('/') %}
             {%for sub in list%}
                 <p class="bonus">{{sub}}</p>

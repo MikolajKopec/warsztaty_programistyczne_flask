@@ -18,7 +18,8 @@ def allowed_file(filename):
 
 @auctioner.route('/buy-now/auction_id=<auction_id>')
 def end_auction(auction_id):
-    auction = Auction.query.filter_by(id = auction_id).delete()
+    Auction.query.filter_by(id = auction_id).delete()
+    Item.query.filter_by(auction_id = auction_id).delete()
     db.session.commit()
     # THINGS WITH END AUCTIONS - CONTACT ETC - TO DO
     return redirect(url_for('views.home'))

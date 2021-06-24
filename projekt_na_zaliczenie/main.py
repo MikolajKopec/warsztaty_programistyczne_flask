@@ -1,3 +1,4 @@
+# Filtrowanie aukcji / usuwanie aukcji przez użytkownika / Warunek kończenia aukcji
 from website import create_app
 
 app = create_app()
