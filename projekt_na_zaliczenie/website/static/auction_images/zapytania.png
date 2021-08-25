@@ -1,0 +1,36 @@
+-- Wypisanie graczy znajdujących się w gildii wraz z jej nazwą
+SELECT nick,G.nazwa as nazwa_gildii from gracz P, gildia G WHERE p.id_gildii = G.nr_gildii;
+-- Wypisanie wszystkim potworów aktualnie znajdujących się na mapie wraz z jej nazwa
+SELECT P.pozycja_x,P.pozycja_y,M.nazwa,A.nazwa FROM pojawil_sie P,potwor M,mapa A WHERE P.id_potwora = M.id_potwora AND P.id_mapy=A.id_mapy
+--Wypisanie graczy z większym poziomem niż 10
+SELECT nick,poziom FROM gracz WHERE poziom>10;
+--wypisanie graczy z gildii 'Marchewki'
+SELECT G.* FROM gracz G, gildia P WHERE G.id_gildii = P.nr_gildii AND P.nazwa = 'Marchewki';
+--wypisanie graczy  wraz z resztą ekwipunku którzy nie mają założonego hełmu
+SELECT G.nick,P.zbroja,P.bron AS ma_helm FROM gracz G, ekwipunek P WHERE G.id_gracza = P.nr_gracza AND P.helm IS NULL;
+-- wyświetlenie gracza który zaczął grać ostatni wraz z liczbą graczy znajdującymi się na serwerze
+SELECT nick,id_gracza as liczba_graczy FROM gracz ORDER BY id_gracza DESC LIMIT 1;  
+--Wypisanie graczy bez gildii
+SELECT nick FROM gracz WHERE id_gildii IS NULL;
+--zliczenie potworów znajdujących sie na pierwszej mapie
+SELECT count(*) as ile_mobow from pojawil_sie WHERE id_mapy=1;
+--suma doświadczenia możliwa do zdobycia z potworów na pierwszej mapie
+SELECT sum(M.doswiadczenie) as ile_expa from pojawil_sie P, potwor M WHERE P.id_mapy=1 AND P.id_potwora = M.id_potwora;
+--Jeżeli gracz posiada miksturę zdrowia, to ile ma ich sztuk
+SELECT nick,ilosc as ilosc_mikstur_zdrowia FROM gracz INNER JOIN posiada ON gracz.id_gracza = posiada.id_gracza WHERE posiada.id_przedmiotu = 1;
+--ilosc mikstur zdrowia znajdująca się w grze
+SELECT sum(ilosc) as ilosc_mikstur_zdrowia FROM gracz INNER JOIN posiada ON gracz.id_gracza = posiada.id_gracza WHERE posiada.id_przedmiotu = 1;
+--osoba z najmniejsza iloscia mikstur zdrowia
+SELECT nick,ilosc as ilosc_mikstur_zdrowia FROM gracz INNER JOIN posiada ON gracz.id_gracza = posiada.id_gracza WHERE posiada.id_przedmiotu = 1 GROUP BY ilosc,nick LIMIT 1;
+--wyswietlenie graczy z zawartymi cyframi w nicku
+SELECT nick FROM gracz WHERE nick ~ '[0-9]';
+--wyswietlenie wszystkich 'ogrów' z tabeli potwory
+SELECT nazwa FROM potwor WHERE nazwa LIKE '%ogr%';
+--wyswietlenie wszystkich graczy mający minimalny wymagany poziom żeby móc wejść na drugą mapę
+SELECT nick FROM gracz WHERE poziom>=(SELECT poziom_min FROM mapa WHERE id_mapy=2 );
+--stworzenie view w celu sprawdzenia pozycji graczy
+CREATE VIEW sprawdz_pozycje AS SELECT G.nick,P.pozycja_x,P.pozycja_y,P.id_mapy FROM gracz G, pozycja P WHERE G.id_gracza = P.id_gracza;
+SELECT * FROM sprawdz_pozycje;
+--stworzenie view w celu sprawdzenia informacji o postaciach bez gildii
+CREATE VIEW gracze_bez_gildii AS SELECT * FROM gracz EXCEPT (SELECT * FROM gracz WHERE id_gildii IS NOT NULL);
+SELECT * FROM gracze_bez_gildii;
